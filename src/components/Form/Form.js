@@ -73,11 +73,10 @@ class Form extends Component {
     render(){
         let { name, price, img } = this.state
         return(
-            <div>
-                Form
-                <input value={name} onChange={(e) => this.handleChange(e.target.value, 'name')}/>
-                <input value={price} onChange={(e) => this.handleChange(e.target.value, 'price')}/>
-                <input value={img} onChange={(e) => this.handleChange(e.target.value, 'img')}/>
+            <div className='formContainer'>
+                <div>Image URL: <br/><input value={img} onChange={(e) => this.handleChange(e.target.value, 'img')}/></div><br />
+                <input value={name} onChange={(e) => this.handleChange(e.target.value, 'name')}/><br />
+                <input value={price} onChange={(e) => this.handleChange(e.target.value, 'price')}/><br />
                 <button onClick={this.clearState}>Cancel</button>
                 {
                     this.state.productId ?
