@@ -1,25 +1,54 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Dashboard from './components/Dashboard/Dashboard'
+import Form from './components/Form/Form'
+import Header from './components/Header/Header'
+import axios from 'axios';
+
 
 class App extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      inventory: [],
+      productId: 0
+    }
+
+    this.getProducts = this.getProducts.bind(this)
+    this.selectId = this.selectId.bind(this)
+  }
+
+  selectId(id){
+    this.setState({
+      productId: id
+    })
+  }
+
+  getProducts(){
+    axios.get('/api/inventory').then(res => {
+      console.log(res.data)
+      this.setState({
+        inventory: res.data
+      })
+    })
+  }
+
+  componentDidMount(){
+    this.getProducts()
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <Header />
+      <Dashboard 
+      inventory={this.state.inventory}
+      getProducts={this.getProducts}
+      selectId={this.selectId}/>
+      <Form 
+      getProducts={this.getProducts}
+      productId={this.state.productId}/>
       </div>
     );
   }
