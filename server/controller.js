@@ -22,6 +22,7 @@ module.exports = {
         })
     },
 
+    // could'nt get this to work 
     updateProduct: (req, res) => {
         let db = req.app.get('db')
         let {id} = req.params

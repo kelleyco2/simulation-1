@@ -52,6 +52,7 @@ class Form extends Component {
         })
     }
 
+    // couldn't get the update to work on the database
     updateProduct(){
         let { nameInput, priceInput, imgInput } = this.state
         let { id } = this.state.productId
@@ -103,7 +104,7 @@ class Form extends Component {
                         </div>
                         <div className='buttons'>
                             <button onClick={this.clearState}>Cancel</button>
-                            <button onClick={this.addProduct}>Add</button>
+                            <button onClick={this.addProduct}>Add To Inventory</button>
                         </div>
                         </div>
                     )
